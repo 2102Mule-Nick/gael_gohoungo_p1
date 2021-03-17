@@ -1,0 +1,80 @@
+CREATE TABLE airports.airports_infos (
+	"list_of-airorts" varchar(250) NOT NULL,
+	airport_city varchar(250) NOT NULL,
+	airport_address varchar(250) NOT NULL
+);
+
+ALTER TABLE airports.airports_infos ADD airport_state varchar(250) NOT NULL;
+ALTER TABLE airports.airports_infos RENAME COLUMN "list_of-airorts" TO airport_name;
+
+CREATE TABLE flights.flights_infos (
+	top_companies varchar(250) NOT NULL,
+	flyghts_day varchar(250) NOT NULL,
+	flight_time date NOT NULL
+);
+ALTER TABLE flights.flights_infos ADD city_of_departure varchar(250) NULL;
+ALTER TABLE flights.flights_infos ADD arrival_city varchar(250) NULL;
+
+ALTER TABLE flights.flights_infos RENAME COLUMN flyghts_day TO flyghts_date;
+ALTER TABLE flights.flights_infos ALTER COLUMN flyghts_date TYPE date USING flyghts_date::date;
+ALTER TABLE flights.flights_infos RENAME COLUMN flight_time TO flights_time;
+ALTER TABLE flights.flights_infos ALTER COLUMN flights_time TYPE time_stamp USING flights_time::time_stamp;
+ALTER TABLE flights.flights_infos RENAME COLUMN city_of_departure TO departure_city;
+
+
+INSERT INTO flights.flights_infos (top_companies,flyghts_date,flight_time,city_of_departure,arrival_city)
+	VALUES ('American Airlines','04-02-2021','7am','New York','Los Angeles');
+UPDATE flights.flights_infos
+	SET top_companies='Delta Airlines'
+	WHERE top_companies='Delta AirLines';
+
+INSERT INTO flights.flights_infos (top_companies,flyghts_date,flight_time,city_of_departure,arrival_city)
+	VALUES ('Delta Airlines','2021-04-03','8pm','Miami','Las Vagas');
+
+INSERT INTO flights.flights_infos (top_companies,flyghts_date,flight_time,city_of_departure,arrival_city)
+	VALUES ('Southwest Airlines','2021-04-05','10am','New York','Atlanta');
+
+INSERT INTO flights.flights_infos (top_companies,flyghts_date,flight_time,city_of_departure,arrival_city)
+	VALUES ('JetBlue','2021-04-05','12pm','Los Angeles','New York');
+
+CREATE TABLE ticket_purchase.user_acc (
+	user_id serial primary key NOT NULL,
+	first_name varchar(50) NOT NULL,
+	last_name varchar(50) NOT NULL
+);
+CREATE TABLE ticket_purchase.flight_booking (
+
+);
+
+ALTER TABLE ticket_purchase.flight_booking ADD one_way bool NOT NULL;
+ALTER TABLE ticket_purchase.flight_booking ADD round_trip bool NOT NULL;
+ALTER TABLE ticket_purchase.flight_booking ADD departure_city varchar(50) NOT NULL;
+ALTER TABLE ticket_purchase.flight_booking ADD arrival_city varchar(50) NOT NULL;
+ALTER TABLE ticket_purchase.flight_booking ADD departure_date date NOT NULL;
+ALTER TABLE ticket_purchase.flight_booking ADD arrival_date date NOT NULL;
+ALTER TABLE ticket_purchase.flight_booking ADD number_of_passengers int4 NOT NULL;
+ALTER TABLE ticket_purchase.flight_booking ADD economy_class bool NULL;
+ALTER TABLE ticket_purchase.flight_booking ADD business_class bool NULL;
+ALTER TABLE ticket_purchase.flight_booking ADD user_id serial NOT NULL;
+ALTER TABLE ticket_purchase.flight_booking ADD CONSTRAINT flight_booking_fk FOREIGN KEY (user_id) REFERENCES ticket_purchase.user_acc(user_id);
+
+ALTER TABLE flights.flights_infos ADD departure_date date NULL;
+ALTER TABLE flights.flights_infos ADD arrival_date date NULL;
+ALTER TABLE flights.flights_infos ADD one_way bool NULL;
+ALTER TABLE flights.flights_infos ADD round_trip bool NULL;
+ALTER TABLE flights.flights_infos ADD economy_class bool NULL;
+ALTER TABLE flights.flights_infos ADD business_class bool NULL;
+
+
+CREATE TABLE hotels.hotels_booking (
+	address varchar(250) NOT NULL,
+	check_in date NOT NULL,
+	check_out date NOT NULL,
+	room_type varchar(250) NULL,
+	price float8 NOT NULL
+);
+
+
+INSERT INTO hotels.hotels_booking (address,check_in,check_out,room_type,price,hotel_name)
+	VALUES ('1960 North Druid Hills rd NE','2021-04-03','2021-04-05','1 bed',72.0,'Red Roof Inn');
+ALTER TABLE ticket_purchase.flight_booking ADD flightnumber int NOT NULL;

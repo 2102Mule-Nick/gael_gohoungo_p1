@@ -1,0 +1,15 @@
+package com.revature.dao;
+
+import com.revature.exception.NoFlightFound;
+import com.revature.pojo.FlightBooking;
+
+public interface FlightBookingDao {
+
+	public void bookFlight(FlightBooking flight) throws NoFlightFound;
+	
+	public float flightPrice(FlightBooking flightPrice);
+	
+	public FlightBooking updateFlight(FlightBooking flightUpdate);
+	
+	public void cancelFlight(FlightBooking flightNumber);
+}
