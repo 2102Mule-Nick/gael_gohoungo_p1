@@ -20,11 +20,11 @@ Logger log = Logger.getRootLogger();
 	private static ConnectionFactoryPostgres connectionFactory = null;
 
 	private ConnectionFactoryPostgres() {
-		URL = "jdbc:postgresql://" + System.getenv("FlightBooking_DB_URL") + ":5432/" + "postgres" + "?";
+		URL = "jdbc:postgresql://" + System.getenv("Hotel_DB_URL") + ":5432/" + "postgres" + "?";
 
-		USERNAME = System.getenv("FlightBooking_DB_USERNAME");
+		USERNAME = System.getenv("Hotel_DB_USERNAME");
 
-		PASSWORD = System.getenv("FlightBooking_DB_PASSWORD");
+		PASSWORD = System.getenv("Hotel_DB_PASSWORD");
 
     }
 	

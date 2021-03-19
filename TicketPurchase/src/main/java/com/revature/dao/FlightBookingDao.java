@@ -5,7 +5,7 @@ import com.revature.pojo.FlightBooking;
 
 public interface FlightBookingDao {
 
-	public void bookFlight(FlightBooking flight) throws NoFlightFound;
+	public FlightBooking bookFlight(String flightNumber) throws NoFlightFound;
 	
 	public float flightPrice(FlightBooking flightPrice);
 	

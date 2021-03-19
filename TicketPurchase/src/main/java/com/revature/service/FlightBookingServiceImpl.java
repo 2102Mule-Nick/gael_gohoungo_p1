@@ -25,4 +25,10 @@ public class FlightBookingServiceImpl implements FlightBookingService {
 		return 0;
 	}
 
+	@Override
+	public String bookFlight(String flightNumber) throws NoFlightFound {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

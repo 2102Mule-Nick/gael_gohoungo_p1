@@ -2,7 +2,7 @@ package com.revature.service;
 
 import com.revature.exception.UserNameTaken;
 import com.revature.exception.UserNotFound;
-import com.revature.exception.invalidPassword;
+import com.revature.exception.InvalidPassword;
 import com.revature.pojo.User;
 
 public interface UserService {
@@ -11,7 +11,9 @@ public interface UserService {
 	
 	public boolean existingUser(User user);
 	
-	public User authenticateUser(User user) throws invalidPassword, UserNotFound;
+	public User currentUser (User user);
+	
+	public User authenticateUser(User user) throws InvalidPassword, UserNotFound;
 	
 	public User updateUser(User user, String password);
 	
